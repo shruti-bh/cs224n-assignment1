@@ -1,9 +1,11 @@
 
 import numpy as np
 
-DEFAULT_FILE_PATH = "utils/datasets/glove.6B.50d.txt"
+#DEFAULT_FILE_PATH = "utils/datasets/glove.6B.50d.txt"
+DEFAULT_FILE_PATH = "utils/datasets/glove.6B.300d.txt"
 
-def loadWordVectors(tokens, filepath=DEFAULT_FILE_PATH, dimensions=50):
+#def loadWordVectors(tokens, filepath=DEFAULT_FILE_PATH, dimensions=50):
+def loadWordVectors(tokens, filepath=DEFAULT_FILE_PATH, dimensions=300):
     """Read pretrained GloVe vectors"""
     wordVectors = np.zeros((len(tokens), dimensions))
     with open(filepath) as ifs:

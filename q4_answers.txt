@@ -1,0 +1,28 @@
+4(b) Avoid overfitting the training dataset
+
+4(d) Reasons pretrained GloVe vectors perform better are -
+* My vectors are trained on 227,242 word count corpus (Stanford Sentiment) wheras GloVe vectors are trained on a corpus containing 6B tokens
+* GloVe vectors are higher dimensional (300)
+* Different training algorithms used. GloVe is more efficient in training time, enabling it to more easily train over a huge corpus
+
+4(e) Ref "q4_reg_vs_acc.png" - 
+* Significant difference between train performance and dev performance indicating that the model has a high bias. This could be because the average word vector features are not enough to capture the sentiment of a sentence. We need more complex features.
+* Best dev accuracy is between 0.1 and 1.0
+
+4(f) Ref "q4_dev_conf.png" - 
+* Majority of the sentences in the dev corpus are in one of the two classes - "+" or "-"
+* 41.28% accuracy on the "-" class and 39.4% accuracy on the "+" class
+* 36.36% accuracy on the "neutral" class
+* 40.58% accuracy on the "--" class and 50.90% accuracy on the "++" class
+* Classifier is most accurate for the "++" class and least accurate for the "neutral" class
+* There is a gradation of misclassification counts - higher misclassifications happen into classes that are closer to the true class and the count fades as the predicted class goes further from the true class.
+
+4(g)
+* "1    4   burns never really harnesses to full effect the energetic cast ."
+Scored high probably because there are many positive words such as "harnesses", "full", "energetic" and because the average word vector feature does not take word order into account and misses the presence of the negation "never"
+
+* "0    3   the affectionate loopiness that once seemed congenital to demme 's perspective has a tough time emerging from between the badly dated cutesy-pie mystery scenario and the newfangled hollywood post-production effects ."
+Averaging word vectors is likely to work worse for such long sentences because we are trying to squeeze the sentiment of more than 25 words into a single word vector.
+
+* "3    1   the structure the film takes may find matt damon and ben affleck once again looking for residuals as this officially completes a good will hunting trilogy that was never planned ."
+Probably due to the absence of strong positive words and not accounting for meaning or sentiment at a level beyond words in our feature set
